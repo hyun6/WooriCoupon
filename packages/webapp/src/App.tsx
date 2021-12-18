@@ -10,15 +10,13 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </a>
       </header>
+      <body>
+        <h1 className="text-2xl font-extrabold text-yellow-600 underline">Hello world!</h1>
+      </body>
     </div>
   );
 }

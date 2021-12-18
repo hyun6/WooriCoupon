@@ -8,7 +8,7 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('test', () => {
+test('test_jest', () => {
   const a = 1;
   expect(a).toEqual(1);
 });
