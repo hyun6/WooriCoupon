@@ -9,3 +9,20 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String
+  coupons Coupon[]
+}
+
+model Coupon {
+  id          Int     @id @default(autoincrement())
+  title       String
+  content     String?
+  usageCount  Int
+  publisherId Int
+  owner       User?    @relation(fields: [ownerId], references: [id])
+  ownerId     Int
+}
