@@ -1,18 +1,21 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
-import { UserService } from './user/user.service';
-import { CouponService } from './coupon/coupon.service';
-import { User as UserModel, Coupon as CouponModel } from '@prisma/client';
+/*
+https://docs.nestjs.com/controllers#controllers
+*/
+
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { CouponService } from './coupon.service';
+import { Coupon as CouponModel } from '@prisma/client';
 
 @Controller()
-export class AppController {
-  constructor(private readonly userService: UserService, private readonly couponService: CouponService) {}
+export class CouponController {
+  constructor(private readonly couponService: CouponService) {}
 
   @Get('coupon/:id')
   async getCouponById(@Param('id') id: string): Promise<CouponModel> {
     return this.couponService.coupon({ id: Number(id) });
   }
 
-  @Get('feed')
+  @Get('coupon')
   async getPublishedCoupons(): Promise<CouponModel[]> {
     return this.couponService.coupons({});
   }
@@ -34,7 +37,7 @@ export class AppController {
   }
 
   @Post('coupon')
-  async createDraft(
+  async createCoupon(
     @Body()
     couponData: {
       title: string;
@@ -53,13 +56,8 @@ export class AppController {
     });
   }
 
-  @Post('user')
-  async signupUser(@Body() userData: { name: string; email: string }): Promise<UserModel> {
-    return this.userService.createUser(userData);
-  }
-
-  @Put('publish/:id')
-  async publishCoupon(@Param('id') id: string): Promise<CouponModel> {
+  @Put('coupon/:id')
+  async updateCoupon(@Param('id') id: string): Promise<CouponModel> {
     return this.couponService.updateCoupon({
       where: { id: Number(id) },
       data: {}

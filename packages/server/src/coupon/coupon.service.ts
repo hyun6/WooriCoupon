@@ -6,7 +6,7 @@ import { Coupon, Prisma } from '@prisma/client';
 export class CouponService {
   constructor(private prisma: PrismaService) {}
 
-  async coupon(couponWhereUniqueInput: Prisma.CouponWhereUniqueInput): Promise<Coupon | null> {
+  async coupon(couponWhereUniqueInput: Prisma.CouponWhereUniqueInput): Promise<Coupon | undefined> {
     return this.prisma.coupon.findUnique({
       where: couponWhereUniqueInput
     });
